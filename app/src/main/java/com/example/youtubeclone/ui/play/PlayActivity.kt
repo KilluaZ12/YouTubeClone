@@ -3,7 +3,6 @@ package com.example.youtubeclone.ui.play
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.view.View
-import androidx.activity.viewModels
 import com.example.youtubeclone.R
 import com.example.youtubeclone.core.base.BaseActivity
 import com.example.youtubeclone.databinding.ActivityPlayBinding
@@ -20,7 +19,7 @@ class PlayActivity() : BaseActivity<ActivityPlayBinding, PlayViewModel>() {
     override fun inflateViewBinding(): ActivityPlayBinding =
         ActivityPlayBinding.inflate(layoutInflater)
 
-    override val viewModel: PlayViewModel by viewModels()
+    override val viewModel: PlayViewModel by viewModel()
 
     private var getIntentVideoId: String? = null
     private var getIntentDesc: String? = null

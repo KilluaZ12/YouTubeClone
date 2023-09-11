@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
 import com.example.youtubeclone.core.base.BaseActivity
 import com.example.youtubeclone.core.network.Resource
 import com.example.youtubeclone.data.model.PlaylistItemModel
@@ -12,13 +11,15 @@ import com.example.youtubeclone.databinding.ActivityDetailBinding
 import com.example.youtubeclone.ui.play.PlayActivity
 import com.example.youtubeclone.utils.ConnectionLiveData
 import com.example.youtubeclone.utils.Constants
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity() : BaseActivity<ActivityDetailBinding, DetailViewModel>() {
 
     override fun inflateViewBinding(): ActivityDetailBinding =
         ActivityDetailBinding.inflate(layoutInflater)
 
-    override val viewModel: DetailViewModel by viewModels()
+    override val viewModel: DetailViewModel by viewModel()
+
 
     private val adapter = DetailAdapter(this::onClick)
 
