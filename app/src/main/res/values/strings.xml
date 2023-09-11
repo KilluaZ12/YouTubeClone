@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">YouTubeClone</string>
+    <string name="playlist">playlist</string>
+    <string name="playlist_with_capital">Playlist</string>
+    <string name="playlist_name">Playlist name</string>
+    <string name="number_of_videos">number of videos</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="try_again">Try again</string>
+    <string name="back">Back</string>
+    <string name="title">Title</string>
+    <string name="desc">Description</string>
+    <string name="play">play</string>
+    <string name="number_of_video_series">number of video series</string>
+    <string name="example_duration">04:14</string>
+    <string name="download">Download</string>
+    <string name="select_video_quality">Select video quality</string>
 </resources>
