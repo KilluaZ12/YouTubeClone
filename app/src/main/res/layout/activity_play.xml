@@ -61,26 +61,12 @@
 
             </androidx.appcompat.widget.Toolbar>
 
-            <com.google.android.exoplayer2.ui.StyledPlayerView
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/playerView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/player_height"
                 android:keepScreenOn="true"
-                app:layout_constraintTop_toBottomOf="@id/toolbar"
-                app:show_subtitle_button="true"
-                app:use_controller="true"
-                argType:fastforward_increment="15000"
-                argType:resize_mode="fixed_width"
-                argType:rewind_increment="15000"
-                argType:show_buffering="when_playing"
-                argType:show_fastforward_button="true"
-                argType:show_next_button="false"
-                argType:show_previous_button="false"
-                argType:show_rewind_button="true"
-                argType:show_subtitle_button="true"
-                argType:use_artwork="true"
-                argType:use_controller="true"
-                argType:use_sensor_rotation="true" />
+                app:layout_constraintTop_toBottomOf="@id/toolbar"/>
 
             <TextView
                 android:id="@+id/tv_title"

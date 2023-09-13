@@ -2,16 +2,21 @@ package com.example.youtubeclone.ui.play
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.media3.common.MediaItem
+import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.dash.DashMediaSource
 import com.example.youtubeclone.R
 import com.example.youtubeclone.core.base.BaseActivity
 import com.example.youtubeclone.databinding.ActivityPlayBinding
 import com.example.youtubeclone.utils.ConnectionLiveData
 import com.example.youtubeclone.utils.Constants
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.source.dash.DashMediaSource
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PlayActivity() : BaseActivity<ActivityPlayBinding, PlayViewModel>() {
@@ -29,22 +34,32 @@ class PlayActivity() : BaseActivity<ActivityPlayBinding, PlayViewModel>() {
     private var playWhenReady = true
     private var currentItem = 0
     private var playbackPosition = 0L
-    private fun exoPlayerInit() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
+    @SuppressLint("UnsafeOptInUsageError")
+    private fun exoPlayerInit() = with(binding){
+
         getIntentVideoId = intent.getStringExtra(Constants.VIDEO_ID)
-        exoPlayer = ExoPlayer.Builder(this)
-            .build()
-        binding.playerView.player = exoPlayer
-        exoPlayer?.playWhenReady = true
+        Log.d("PlayActivity", "exoPlayerInit: $getIntentVideoId")
+        lifecycle.addObserver(playerView)
+
+        playerView.getYouTubePlayerWhenReady(object :YouTubePlayerCallback{
+            override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                youTubePlayer.loadOrCueVideo(lifecycle, getIntentVideoId!!, 0f)
+            }
+        })
+        //exoPlayer?.playWhenReady = true
+
+         //it doesn't work
+        val mediaItem = MediaItem.fromUri("https://www.youtube.com/watch?v=yAk2fgFRYDc")
         val defaultHttpDataSourceFactory = DefaultHttpDataSource.Factory()
-        val mediaItem =
-            MediaItem.fromUri("https://www.dailymotion.com/video/x8ntwc5") //it doesn't work
-        val mediaSource =
-            DashMediaSource.Factory(defaultHttpDataSourceFactory).createMediaSource(mediaItem)
-        exoPlayer?.setMediaItem(mediaItem)
-        //exoPlayer.prepare()
-        exoPlayer?.seekTo(currentItem, playbackPosition)
+        val mediaSource = DashMediaSource.Factory(defaultHttpDataSourceFactory).createMediaSource(mediaItem)
+        //exoPlayer?.seekTo(currentItem, playbackPosition)
         exoPlayer?.setMediaSource(mediaSource)
-        exoPlayer?.playWhenReady = playWhenReady
+        exoPlayer?.playWhenReady = true
         exoPlayer?.prepare()
     }
 
