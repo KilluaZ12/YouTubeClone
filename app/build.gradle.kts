@@ -98,10 +98,6 @@ dependencies {
     //CoordinatorLayout
     implementation ("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
 
-    //Media3 ExoPlayer
-    implementation ("androidx.media3:media3-exoplayer:1.1.1")
-    implementation ("androidx.media3:media3-exoplayer-dash:1.1.1")
-    implementation ("androidx.media3:media3-ui:1.1.1")
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
 
 }

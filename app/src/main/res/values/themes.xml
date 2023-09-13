@@ -4,6 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="floatingActionButtonStyle">@style/FabShapeStyle</item>
+        <item name="radioButtonStyle">@style/AppTheme.RadioButton</item>
     </style>
 
     <style name="Theme.YouTubeClone" parent="Base.Theme.YouTubeClone" />
@@ -12,6 +13,16 @@
         <item name="cornerSize">50%</item>
         <item name="cornerFamily">rounded</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AppTheme.RadioButton" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="materialThemeOverlay">@style/AppTheme.Overlay</item>
+        <item name="buttonTint">@color/red_play</item>
+    </style>
+
+    <style name="AppTheme.Overlay" parent="">
+        <item name="colorOnSurface">@color/red_play</item>
+        <item name="colorPrimary">@color/red_play</item>
     </style>
 
 </resources>
